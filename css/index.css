@@ -1,0 +1,38 @@
+.pictures {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pictures img {
+  width: auto;
+}
+.card {
+  display: flex;
+  width: 80%;
+  height: 350px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: aliceblue;
+}
+.card-item {
+  background-color: antiquewhite;
+  width: 45%;
+  height: 90%;
+  padding: 10px;
+}
+.card-item ul {
+  margin-top: 10px;
+}
+.card-item ul li {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: cadetblue;
+}
+.more-information {
+  margin: 10px;
+  float: right;
+}
+@media screen and (max-width: 768px) {
+}

@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>首页</title>
   </head>
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/normalize.css" />
+
   <body>
     <div class="container">
-      <header class="header">杭电赏花网</header>
-      <nav>
+      <header class="header"><h1>杭电赏花网</h1></header>
+      <nav class="navigator">
         <ul>
           <li>
             <a href="./index.html">首页</a>
           </li>
           <li>
-            <a href="./HTML/list.html">赏花信息</a>
+            <a href="./pages/list.html">赏花信息</a>
           </li>
           <li>
-            <a href="./HTML/form.html">丰富赏花信息</a>
+            <a href="./pages/form.html">丰富赏花信息</a>
           </li>
           <li>
-            <a href="./HTML/more.html">更多链接</a>
+            <a href="./pages/more.html">更多链接</a>
           </li>
         </ul>
       </nav>
@@ -29,30 +32,32 @@
           <img src="./assets/flowers/梅花.png" alt="梅花" />
         </div>
 
-        <div class="flower-information">
-          <h2>杭电校内赏花信息</h2>
-          <ul>
-            <li><a href="./HTML/detail.html">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
-            <li><a href="./HTML/detail.html">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
-            <li><a href="./HTML/detail.html">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
-          </ul>
-          <div class="more-information"><a href="./HTML/list.html">更多信息</a></div>
-        </div>
+        <div class="card">
+          <div class="card-item flower-information">
+            <h2>杭电校内赏花信息</h2>
+            <ul>
+              <li><a href="./pages/detail.html">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
+              <li><a href="./pages/detail.html">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
+              <li><a href="./pages/detail.html">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
+              <div class="more-information"><a href="./pages/list.html">更多信息</a></div>
+            </ul>
+          </div>
 
-        <div class="more-link">
-          <h2>更多关于花的网站</h2>
-          <ul>
-            <li><a href="http://www.huafensi.com/" target="_blank">花粉丝：花卉查询网</a></li>
-            <li><a href="http://www.nahuayuan.com/" target="_blank">那花园--花卉第一网站！</a></li>
-            <li><a href="https://www.yhzhishi.com/" target="_blank">养花知识网</a></li>
-          </ul>
+          <div class="card-item more-link">
+            <h2>更多关于花的网站</h2>
+            <ul>
+              <li><a href="http://www.huafensi.com/" target="_blank">花粉丝：花卉查询网</a></li>
+              <li><a href="http://www.nahuayuan.com/" target="_blank">那花园--花卉第一网站！</a></li>
+              <li><a href="https://www.yhzhishi.com/" target="_blank">养花知识网</a></li>
+            </ul>
+            <div class="more-information"><a href="./pages/more.html">更多信息</a></div>
+          </div>
         </div>
-        <div class="more-information"><a href="./HTML/more.html">更多信息</a></div>
       </main>
 
-      <button class="top">返回顶部</button>
+      <button class="top">top</button>
 
-      <footer class="footer">浙备案号：xxxxxxxxxxxxxxxxx</footer>
+      <footer class="footer"></footer>
     </div>
   </body>
 </html>
