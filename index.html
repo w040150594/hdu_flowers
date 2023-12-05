@@ -7,6 +7,7 @@
   </head>
   <link rel="stylesheet" href="./css/index.css" />
   <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./assets/jquery.easy_slides.css" />
 
   <body>
     <div class="container">
@@ -31,8 +32,16 @@
       </nav>
       <main class="content">
         <div class="pictures">
-          <img src="./assets/flowers/梅花.png" alt="梅花" />
+          <div class="slider slider_one_big_picture">
+            <img src="./assets/flowers/梅花.png" alt="" />
+            <img src="./assets/flowers/粉杏.png" alt="" />
+            <img src="./assets/flowers/郁金香.png" alt="" />
+            <div class="next_button"></div>
+            <div class="prev_button"></div>
+            <div class="nav_indicators"></div>
+          </div>
         </div>
+
         <div class="card">
           <div class="card-item flower-information">
             <h2>杭电校内赏花信息</h2>
@@ -62,4 +71,14 @@
     </div>
   </body>
 </html>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script src="./assets/jquery.easy_slides.js"></script>
 <script src="./js/normalize.js"></script>
+<script>
+  $(".slider_one_big_picture").EasySlides({
+    autoplay: true,
+    timeout: 3000,
+    loop: true,
+    show: 3,
+  });
+</script>

@@ -10,7 +10,6 @@
   font-family: "阿里妈妈方圆体 VF Regular";
   src: url("//at.alicdn.com/wf/webfont/3rtPSgDmpElC/OG1uCtzWCyrO.woff2") format("woff2"),
     url("//at.alicdn.com/wf/webfont/3rtPSgDmpElC/rWnmq1KgqIcf.woff") format("woff");
-  font-display: swap;
 }
 
 .container {
@@ -31,6 +30,10 @@
   margin: 0 auto;
 }
 
+.navigator {
+  border-bottom: 1px solid #eaeaea;
+}
+
 .navigator ul {
   display: flex;
   align-items: center;
@@ -45,7 +48,8 @@
 }
 .navigator ul li {
   margin: 0 auto;
-  background-color: aquamarine;
+  background-color: rgb(157, 239, 212);
+  border-radius: 10px;
   padding: 20px;
 }
 .navigator ul li a {

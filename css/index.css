@@ -1,11 +1,3 @@
-.pictures {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pictures img {
-  width: auto;
-}
 .card {
   display: flex;
   width: 80%;
@@ -20,6 +12,7 @@
   background-color: antiquewhite;
   width: 45%;
   height: 90%;
+  border-radius: 5px;
   padding: 10px;
 }
 .card-item ul {
@@ -28,7 +21,8 @@
 .card-item ul li {
   margin-top: 15px;
   padding: 10px;
-  background-color: cadetblue;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
 }
 .more-information {
   margin: 10px;
