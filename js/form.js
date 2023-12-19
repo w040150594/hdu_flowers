@@ -84,23 +84,25 @@ form.addEventListener("submit", function (event) {
     !flowerGrowthEnvironment ||
     !flowerDistribution ||
     !flowerDescription ||
-    flowerImgInput.length === 0
+    flowerImgInput.files.length === 0
   ) {
     alert("你必须填完所有字段并上传图片。");
-  } else {
-    flowerData.name = flowerName;
-    flowerData.alias = flowerAlias;
-    flowerData.scientificName = flowerScientificName;
-    flowerData.family = flowerFamily;
-    flowerData.origin = flowerOrigin;
-    flowerData.floweringPeriod = flowerFloweringPeriod.value;
-    flowerData.colors = Array.from(flowerColors).map(function (checkbox) {
-      return checkbox.value;
-    });
-    flowerData.growthEnvironment = flowerGrowthEnvironment;
-    flowerData.distribution = flowerDistribution;
-    flowerData.description = flowerDescription;
+    return;
   }
+
+  flowerData.name = flowerName;
+  flowerData.alias = flowerAlias;
+  flowerData.scientificName = flowerScientificName;
+  flowerData.family = flowerFamily;
+  flowerData.origin = flowerOrigin;
+  flowerData.floweringPeriod = flowerFloweringPeriod.value;
+  flowerData.colors = Array.from(flowerColors).map(function (checkbox) {
+    return checkbox.value;
+  });
+  flowerData.growthEnvironment = flowerGrowthEnvironment;
+  flowerData.distribution = flowerDistribution;
+  flowerData.description = flowerDescription;
+
   console.log(flowerData);
 
   // 使用 uuid 生成一个唯一标识符作为键来存储数据
