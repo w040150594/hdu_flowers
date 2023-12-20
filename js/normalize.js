@@ -148,7 +148,7 @@ function renderList() {
           <li>
             <a href="#/list/0"
               ><img
-                src="../assets/flowers/梅花.png"
+                src="./assets/flowers/梅花.png"
                 alt="梅花"
                 width="100"
                 height="80"
@@ -158,21 +158,21 @@ function renderList() {
           <li>
             <a href="#/list/1"
               ><img
-                src="../assets/flowers/玉兰花.png"
+                src="./assets/flowers/玉兰花.png"
                 alt="玉兰花"
                 width="100"
                 height="80"
-              />花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a
+              />花名：玉兰花，分布地点：8教实验楼门前，飞碟体育馆周边</a
             >
           </li>
           <li>
             <a href="#/list/2"
               ><img
-                src="../assets/flowers/郁金香.png"
+                src="./assets/flowers/郁金香.png"
                 alt="郁金香"
                 width="100"
                 height="80"
-              />花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a
+              />花名：郁金香，分布地点：8教实验楼门前，飞碟体育馆周边</a
             >
           </li>
         </ul>`;
@@ -184,7 +184,7 @@ function renderList() {
 function renderDetail(id) {
   const flowerData = [
     {
-      flowerImage: "../assets/flowers/梅花.png",
+      flowerImage: "./assets/flowers/梅花.png",
       name: "梅花",
       alias: "花中四君子",
       scientificName: "Prunus mume",
@@ -198,7 +198,7 @@ function renderDetail(id) {
       description: "梅花是中国传统名花之一，也是花中四君子之一。它具有傲雪凌霜、不畏严寒的品质，被誉为'岁寒三友'之一。",
     },
     {
-      flowerImage: "../assets/flowers/玉兰花.png",
+      flowerImage: "./assets/flowers/玉兰花.png",
       name: "玉兰花",
       alias: "玉芙蓉",
       creatTime: "2023/12/2 15:48:04",
@@ -212,7 +212,7 @@ function renderDetail(id) {
       description: "玉兰花瓣洁白如玉，花香四溢，是中国传统的观赏名花之一。",
     },
     {
-      flowerImage: "../assets/flowers/郁金香.png",
+      flowerImage: "./assets/flowers/郁金香.png",
       name: "郁金香",
       alias: "花中皇后",
       scientificName: "Tulipa gesneriana",
