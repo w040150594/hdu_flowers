@@ -8,55 +8,21 @@ function initForm() {
 
     // 检查文件是否存在
     if (!file) {
-      alert("没有选择文件");
       return;
     }
-
-    // 约束图片大小，例如 1MB
-    const maxSize = 1 * 1024 * 1024;
+    // 约束图片大小，例如 3MB
+    const maxSize = 3 * 1024 * 1024;
     if (file.size > maxSize) {
       event.target.value = "";
-      alert("图片大小不能超过 1MB");
+      alert("图片大小不能超过 3MB");
       return;
     }
 
     // 使用 FileReader 读取文件
     const reader = new FileReader();
     reader.readAsDataURL(file);
-
-    reader.onload = function (e) {
-      const img = new Image();
-      // 设置图片源为读取结果
-      img.src = e.target.result;
-      // 图片加载完成后执行
-      img.onload = function () {
-        // 使用 canvas 进行压缩
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        let width = img.width;
-        let height = img.height;
-        let maxSide = Math.max(width, height);
-
-        // 设置最大宽度或高度
-        if (maxSide > 1024) {
-          const scale = 1024 / maxSide;
-          width *= scale;
-          height *= scale;
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
-
-        // 将压缩后的图片转换为 DataURL
-        const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
-        //添加到上传按钮下面预览图片
-        const flowerImgPreview = document.querySelector("#flower-image-preview");
-        flowerImgPreview.src = dataUrl;
-
-        flowerData.flowerImage = dataUrl;
-      };
-    };
+    // 读取完成后压缩图片
+    reader.onload = (e) => compressImg(e);
   });
 
   form.addEventListener("submit", function (event) {
@@ -110,7 +76,46 @@ function initForm() {
 
     // 使用 uuid 生成一个唯一标识符作为键来存储数据
     const uniqueId = uuidv4();
-    //获取本地时间做为发布时间
+    // 获取本地时间做为发布时间
+    flowerData.creatTime = getTime();
+    console.log(flowerData);
+    // 本地存储
+    storeData(uniqueId, flowerData);
+  });
+  function compressImg(e) {
+    const img = new Image();
+    // 设置图片源为读取结果
+    img.src = e.target.result;
+    // 图片加载完成后执行
+    img.onload = function () {
+      // 使用 canvas 进行压缩
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      let width = img.width;
+      let height = img.height;
+      let maxSide = Math.max(width, height);
+
+      // 设置最大宽度或高度
+      if (maxSide > 1024) {
+        const scale = 1024 / maxSide;
+        width *= scale;
+        height *= scale;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // 将压缩后的图片转换为 DataURL
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
+      //添加到上传按钮下面预览图片
+      const flowerImgPreview = document.querySelector("#flower-image-preview");
+      flowerImgPreview.src = dataUrl;
+
+      flowerData.flowerImage = dataUrl;
+    };
+  }
+  function getTime() {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -119,8 +124,9 @@ function initForm() {
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
     const time = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
-    flowerData.creatTime = time;
-    //本地存储
+    return time;
+  }
+  function storeData(uniqueId, flowerData) {
     localforage
       .setItem(uniqueId, flowerData)
       .then(function () {
@@ -130,6 +136,5 @@ function initForm() {
       .catch(function (err) {
         alert("保存数据时出错：" + err);
       });
-  });
-  localforage.clear();
+  }
 }
