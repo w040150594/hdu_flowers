@@ -18,17 +18,24 @@
   background-color: #f5f5f5;
 }
 .header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: start;
   width: 100%;
   height: 50px;
-  background-color: #7c1823;
+  background-color: #324ba9;
+}
+.header .logo {
+  width: 200px;
+  height: 40px;
+  margin-left: 30px;
 }
 .header h1 {
   font-family: "阿里妈妈方圆体 VF Regular";
   font-size: 30px;
   color: rgba(255, 255, 255);
   line-height: 50px;
-  margin: 0 auto;
+  margin-left: 20px;
 }
 
 .navigator {
@@ -49,13 +56,13 @@
 }
 .navigator ul li {
   margin: 0 auto;
-  background-color: #0f59a4;
+  background-color: #324ba9;
   border-radius: 10px;
   padding: 10px 15px;
 }
 .navigator ul li a {
-  text-decoration: none;
   color: white;
+  font-weight: 600;
 }
 a:hover {
   color: green;
