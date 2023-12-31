@@ -1,12 +1,11 @@
+//主页
 function renderMain() {
   return `
           <div class="pictures">
           <div class="slider slider_one_big_picture">
-            <img src="./assets/flowers/梅花.png" alt="" />
-            <img src="./assets/flowers/玉兰花.png" alt="" />
-            <img src="./assets/flowers/郁金香.png" alt="" />
-            <div class="next_button"></div>
-            <div class="prev_button"></div>
+            ${flowerData.map((item) => {
+              return `<img src="${item.flowerImage}" alt="" />`;
+            })}
             <div class="nav_indicators"></div>
           </div>
         </div>
@@ -15,43 +14,45 @@ function renderMain() {
           <div class="card-item flower-information">
             <h2>杭电校内赏花信息</h2>
             <ul>
-              <li><a href="#/list/0">花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
-              <li><a href="#/list/1">花名：玉兰花，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
-              <li><a href="#/list/2">花名：郁金香，分布地点：8教实验楼门前，飞碟体育馆周边</a></li>
-              <div class="more-information"><a href="#/list">更多信息</a></div>
+            ${flowerData
+              .map((item) => {
+                return `<li><a href="#/list/${item.key}">花名：${item.name}，分布地点：${item.distribution}</a></li>`;
+              })
+              .join("")}
             </ul>
+            <div class="more-information"><a href="#/list">更多信息</a></div>
           </div>
 
           <div class="card-item more-link">
             <h2>更多关于花的网站</h2>
             <ul>
-              <li><a href="http://www.huafensi.com/" target="_blank">花粉丝：花卉查询网</a></li>
-              <li><a href="http://www.nahuayuan.com/" target="_blank">那花园--花卉第一网站！</a></li>
-              <li><a href="https://www.yhzhishi.com/" target="_blank">养花知识网</a></li>
+              ${moreData
+                .map((item) => {
+                  return `<li><a href="${item.link}" target="_blank">${item.name}</a></li>`;
+                })
+                .join("")}
             </ul>
             <div class="more-information"><a href="#/more">更多信息</a></div>
           </div>
         </div>`;
 }
+//更多链接页
 function renderMore() {
   return `
         <h2>更多关于花的网站</h2>
         <ul class="list-link">
+            ${moreData
+              .map((item) => {
+                return `
           <li>
-            <div class="brief">简介：花粉丝——花卉查询网专业提供中国以及世界各地的花卉资料，通过细分花的分类，打造一个集花卉养殖、栽培、图片、花语以及花卉历史传说等知识为一体的特色网站。</div>
-            <div class="brief">链接：<a href="http://www.huafensi.com/" target="_blank">花粉丝：花卉查询网</a></div>
-
-          </li>
-          <li>
-            <div class="brief">简介：那花园花卉网-花卉第一网站,提供花卉图片及名称大全,多肉植物,花语大全,室内植物,盆景,插花,园艺等花卉信息,是最好的花卉网站！</div>
-            <div class="brief">链接：<a href="http://www.nahuayuan.com/" target="_blank">那花园--花卉第一网站！</a>
-          </li></div>
-          <li>
-            <div class="brief">简介：养花知识网（yhzhishi.com） - 收集分享养花知识、养花心得、养花经验的网站，网站包含养花知识、花卉创意、花语大全、花卉风水等栏目，喜欢养花就来养花知识网吧。</div>
-            <div class="brief">链接：<a href="https://www.yhzhishi.com/" target="_blank">养花知识网</a></div>
-          </li>
+            <div class="brief">简介：${item.brief}</div>
+            <div class="brief">链接：<a href="${item.link}" target="_blank">${item.name}</a></div>
+          </li>`;
+              })
+              .join("")}
         </ul>`;
 }
+//新增表单页
 function renderForm() {
   return `<h2 class="title">新增赏花信息</h2>
 <form action="" method="post">
@@ -112,7 +113,7 @@ function renderForm() {
   </div>
   <div class="form-item">
     <label for="flower-distribution">校园分布地点：</label>
-    <input type="text" id="flower-distribution" name="flower-distribution" placeholder="请输入分布地点" value="图书馆前" />
+    <input type="text" id="flower-distribution" name="flower-distribution" placeholder="请输入分布地点" value="科技馆附近" />
   </div>
   <div class="form-item">
     <label for="flower-description">特点描述：</label>
@@ -128,143 +129,44 @@ function renderForm() {
   </div>
 </form>`;
 }
+//列表页
 function renderList() {
   let itemsTemplate = "";
-  localforage
-    .iterate(function (value, key) {
-      itemsTemplate += `
+  function renderListItem(value, key) {
+    itemsTemplate += `
         <li>
           <a href="#/list/${key}">
             <img src="${value.flowerImage}" width="100" height="80" alt="${value.name}" />
-            花名：${value.name}，分布地点：${value.distribution}
+            <div>
+              <div>花名：${value.name}</div>
+              <div>分布地点：${value.distribution}</div>
+              <div>发布时间：${value.creatTime}</div>
+            </div>
           </a>
         </li>
       `;
+  }
+  for (const item of flowerData) {
+    renderListItem(item, item.key);
+  }
+  localforage
+    .iterate(function (value, key) {
+      renderListItem(value, key);
     })
     .then(function () {
       contentArea.innerHTML = `<h2>杭电校内赏花信息</h2>
         <ul class="list-flowers">
           ${itemsTemplate}
-          <li>
-            <a href="#/list/0"
-              ><img
-                src="./assets/flowers/梅花.png"
-                alt="梅花"
-                width="100"
-                height="80"
-              />花名：梅花，分布地点：8教实验楼门前，飞碟体育馆周边</a
-            >
-          </li>
-          <li>
-            <a href="#/list/1"
-              ><img
-                src="./assets/flowers/玉兰花.png"
-                alt="玉兰花"
-                width="100"
-                height="80"
-              />花名：玉兰花，分布地点：8教实验楼门前，飞碟体育馆周边</a
-            >
-          </li>
-          <li>
-            <a href="#/list/2"
-              ><img
-                src="./assets/flowers/郁金香.png"
-                alt="郁金香"
-                width="100"
-                height="80"
-              />花名：郁金香，分布地点：8教实验楼门前，飞碟体育馆周边</a
-            >
-          </li>
         </ul>`;
     })
     .catch(function (err) {
       console.log(err);
     });
 }
-function renderDetail(id) {
-  const flowerData = [
-    {
-      flowerImage: "./assets/flowers/梅花.png",
-      name: "梅花",
-      alias: "花中四君子",
-      scientificName: "Prunus mume",
-      creatTime: "2023/11/28 11:43:04",
-      family: "蔷薇科",
-      origin: "中国",
-      floweringPeriod: "冬季",
-      colors: ["红色", "粉色", "白色"],
-      growthEnvironment: "半阴半阳、通风良好、排水良好的砂质壤土",
-      distribution: "中国南方、日本、朝鲜半岛等地",
-      description: "梅花是中国传统名花之一，也是花中四君子之一。它具有傲雪凌霜、不畏严寒的品质，被誉为'岁寒三友'之一。",
-    },
-    {
-      flowerImage: "./assets/flowers/玉兰花.png",
-      name: "玉兰花",
-      alias: "玉芙蓉",
-      creatTime: "2023/12/2 15:48:04",
-      scientificName: "Magnolia denudata",
-      family: "木兰科",
-      origin: "中国",
-      floweringPeriod: "春",
-      colors: ["白色", "淡紫色"],
-      growthEnvironment: "湿润的环境",
-      distribution: "食堂附近",
-      description: "玉兰花瓣洁白如玉，花香四溢，是中国传统的观赏名花之一。",
-    },
-    {
-      flowerImage: "./assets/flowers/郁金香.png",
-      name: "郁金香",
-      alias: "花中皇后",
-      scientificName: "Tulipa gesneriana",
-      creatTime: "2023/10/28 10:48:04",
-      family: "百合科",
-      origin: "中亚",
-      floweringPeriod: "春",
-      colors: ["红色", "黄色", "紫色", "粉色"],
-      growthEnvironment: "阳光充足、排水良好的砂质壤土",
-      distribution: "荷兰",
-      description: "郁金香是一种多年生草本植物，叶子狭长，花茎高大，花色丰富，花型优美，被誉为'花中皇后'。",
-    },
-  ];
-  if (id == 0 || id == 1 || id == 2) {
-    contentArea.innerHTML = `<article class="article">
-    <h2 class="title">${flowerData[id].name}</h2>
-    <div class="date">发布时间: ${flowerData[id].creatTime}</div>
-    <img src="${flowerData[id].flowerImage}" alt="${flowerData[id].name}" />
-    <table>
-      <tr>
-        <td>花名：${flowerData[id].name}</td>
-        <td>别名：${flowerData[id].alias}</td>
-      </tr>
-      <tr>
-        <td>学名：${flowerData[id].scientificName}</td>
-        <td>花科：${flowerData[id].family}</td>
-      </tr>
-      <tr>
-        <td>原产地：${flowerData[id].origin}</td>
-        <td>花期：${flowerData[id].floweringPeriod}</td>
-      </tr>
-      <tr>
-        <td colspan="2">花色：${flowerData[id].colors.join("、")}</td>
-      </tr>
-      <tr>
-        <td colspan="2">生长环境：${flowerData[id].growthEnvironment}</td>
-      </tr>
-      <tr>
-        <td colspan="2">校园分布地点：${flowerData[id].distribution}</td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          特点描述：${flowerData[id].description}
-        </td>
-      </tr>
-    </table>
-  </article>`;
-  } else {
-    localforage
-      .getItem(id)
-      .then(function (flowerData) {
-        contentArea.innerHTML = `
+//详情页
+function renderDetail(key) {
+  function renderDetailHtml(flowerData) {
+    contentArea.innerHTML = `
     <article class="article">
     <h2 class="title">${flowerData.name}</h2>
     <div class="date">发布时间:${flowerData.creatTime}</div>
@@ -299,6 +201,14 @@ function renderDetail(id) {
     </table>
   </article>
 `;
+  }
+  if (key == 0 || key == 1 || key == 2) {
+    renderDetailHtml(flowerData[key]);
+  } else {
+    localforage
+      .getItem(key)
+      .then(function (flowerData) {
+        renderDetailHtml(flowerData);
       })
       .catch(function (err) {
         console.log(err);

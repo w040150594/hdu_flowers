@@ -82,6 +82,7 @@ function initForm() {
     // 本地存储
     storeData(uniqueId, flowerData);
   });
+  //图片压缩
   function compressImg(e) {
     const img = new Image();
     // 设置图片源为读取结果
@@ -115,6 +116,7 @@ function initForm() {
       flowerData.flowerImage = dataUrl;
     };
   }
+  //获取本地时间
   function getTime() {
     const date = new Date();
     const year = date.getFullYear();
@@ -126,6 +128,7 @@ function initForm() {
     const time = `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
     return time;
   }
+  //存储表单数据到
   function storeData(uniqueId, flowerData) {
     localforage
       .setItem(uniqueId, flowerData)

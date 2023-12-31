@@ -16,3 +16,9 @@
   padding: 10px;
   margin: 10px;
 }
+.list-flowers li a {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}

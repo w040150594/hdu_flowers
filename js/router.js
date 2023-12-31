@@ -1,3 +1,4 @@
+//组件渲染容器区域
 const contentArea = document.getElementById("content");
 
 // 添加hashchange事件监听器
@@ -13,6 +14,8 @@ const routes = [
 ];
 // 初始状态下处理路由
 handleRouteChange();
+
+//处理哈希路由变化
 function handleRouteChange() {
   // 去除'#'字符，添加默认路由
   const currentHash = window.location.hash.slice(1) || "/";
@@ -23,6 +26,7 @@ function handleRouteChange() {
   //根据路由更新 js 事件注册函数
   updateJS(route);
 }
+//搜索匹配路由
 function findRoute(currentHash) {
   // 查找匹配的路由配置
   const route = routes.find((r) => {
