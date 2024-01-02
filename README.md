@@ -35,12 +35,12 @@
 ## 基本界面原型
 
 - 首页
-  ![Alt text](./assets/project/image.png)
+  ![Alt text](./imgs/project/image.png)
 - 赏花列表页
-  ![Alt text](./assets/project/image-1.png)
+  ![Alt text](./imgs/project/image-1.png)
 - 赏花详细页
-  ![Alt text](./assets/project/image-2.png)
+  ![Alt text](./imgs/project/image-2.png)
 - 表单页
-  ![Alt text](./assets/project/image-3.png)
+  ![Alt text](./imgs/project/image-3.png)
 - 更多链接页
-  ![Alt text](./assets/project/image-4.png)
+  ![Alt text](./imgs/project/image-4.png)

@@ -2,7 +2,7 @@
 const flowerData = [
   {
     key: 0,
-    flowerImage: "./assets/flowers/梅花.png",
+    flowerImage: "./imgs/flowers/梅花.png",
     name: "梅花",
     alias: "花中四君子",
     scientificName: "Prunus mume",
@@ -17,7 +17,7 @@ const flowerData = [
   },
   {
     key: 1,
-    flowerImage: "./assets/flowers/玉兰花.png",
+    flowerImage: "./imgs/flowers/玉兰花.png",
     name: "玉兰花",
     alias: "玉芙蓉",
     creatTime: "2023/12/2 15:48:04",
@@ -32,7 +32,7 @@ const flowerData = [
   },
   {
     key: 2,
-    flowerImage: "./assets/flowers/郁金香.png",
+    flowerImage: "./imgs/flowers/郁金香.png",
     name: "郁金香",
     alias: "花中皇后",
     scientificName: "Tulipa gesneriana",
